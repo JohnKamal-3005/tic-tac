@@ -1059,38 +1059,229 @@
 			background: rgba(255, 51, 68, 0.25);
 		}
 
+		.rules-modal-card {
+			max-width: 600px;
+			width: 100%;
+		}
+		.rules-tabs-nav {
+			display: flex;
+			gap: 0.35rem;
+			background: rgba(0, 0, 0, 0.4);
+			border: 1px solid var(--border-subtle);
+			padding: 0.35rem;
+			border-radius: 12px;
+			margin-bottom: 1.15rem;
+			overflow-x: auto;
+		}
+		.rules-tab-btn {
+			background: transparent;
+			border: 1px solid transparent;
+			color: var(--text-secondary);
+			padding: 0.45rem 0.75rem;
+			font-family: var(--font-main);
+			font-size: 0.75rem;
+			font-weight: 700;
+			border-radius: 8px;
+			cursor: pointer;
+			white-space: nowrap;
+			transition: all 0.2s ease;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.3rem;
+		}
+		.rules-tab-btn:hover {
+			color: var(--text-primary);
+			background: rgba(255, 255, 255, 0.06);
+		}
+		.rules-tab-btn.active {
+			background: linear-gradient(135deg, rgba(0, 240, 255, 0.18), rgba(255, 0, 127, 0.18));
+			border-color: var(--border-color);
+			color: var(--text-primary);
+			box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+		}
 		.rules-content {
 			display: flex;
 			flex-direction: column;
-			gap: 0.9rem;
-			max-height: 380px;
-			overflow-y: auto;
-			padding-right: 0.3rem;
-			margin-bottom: 1.5rem;
-		}
-		.rule-item {
-			display: flex;
 			gap: 0.85rem;
-			align-items: flex-start;
-			background: rgba(255, 255, 255, 0.03);
+			max-height: 400px;
+			overflow-y: auto;
+			padding-right: 0.35rem;
+			margin-bottom: 1.25rem;
+		}
+		.rules-tab-panel {
+			display: none;
+			flex-direction: column;
+			gap: 0.85rem;
+			animation: fadeIn 0.25s ease;
+		}
+		.rules-tab-panel.active {
+			display: flex;
+		}
+		.rule-card {
+			background: rgba(255, 255, 255, 0.035);
+			border: 1px solid var(--border-subtle);
+			border-radius: 14px;
+			padding: 0.85rem 1rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.4rem;
+			position: relative;
+			overflow: hidden;
+		}
+		.rule-card::before {
+			content: "";
+			position: absolute;
+			left: 0;
+			top: 0;
+			bottom: 0;
+			width: 3.5px;
+			background: var(--color-accent);
+			opacity: 0.7;
+		}
+		.rule-card-header {
+			display: flex;
+			align-items: center;
+			gap: 0.5rem;
+			font-size: 0.88rem;
+			font-weight: 800;
+			color: var(--text-primary);
+		}
+		.rule-badge {
+			font-size: 0.65rem;
+			padding: 2px 7px;
+			border-radius: 6px;
+			background: rgba(0, 240, 255, 0.14);
+			color: var(--color-accent);
+			border: 1px solid rgba(0, 240, 255, 0.25);
+			font-weight: 700;
+			margin-left: auto;
+		}
+		.rule-badge.active-badge {
+			background: rgba(0, 255, 157, 0.15);
+			color: #00ff9d;
+			border-color: rgba(0, 255, 157, 0.4);
+		}
+		.rule-card-body {
+			font-size: 0.79rem;
+			color: var(--text-secondary);
+			line-height: 1.45;
+		}
+		.rule-tip-box {
+			background: rgba(255, 230, 0, 0.08);
+			border: 1px solid rgba(255, 230, 0, 0.22);
+			border-radius: 10px;
+			padding: 0.6rem 0.8rem;
+			font-size: 0.75rem;
+			color: #ffe6a0;
+			display: flex;
+			align-items: center;
+			gap: 0.45rem;
+		}
+
+		/* On-Page Quick Rules Accordion */
+		.quick-rules-container {
+			width: 100%;
+			max-width: 620px;
+			margin-top: 0.9rem;
+			display: flex;
+			flex-direction: column;
+			align-items: center;
+		}
+		.quick-rules-toggle-btn {
+			background: rgba(255, 255, 255, 0.04);
+			border: 1px solid var(--border-subtle);
+			color: var(--text-secondary);
+			border-radius: 12px;
+			padding: 0.5rem 1.1rem;
+			font-family: var(--font-main);
+			font-size: 0.8rem;
+			font-weight: 700;
+			display: inline-flex;
+			align-items: center;
+			gap: 0.5rem;
+			cursor: pointer;
+			transition: all 0.25s var(--ease-smooth);
+		}
+		.quick-rules-toggle-btn:hover {
+			background: rgba(255, 255, 255, 0.09);
+			color: var(--text-primary);
+			border-color: var(--border-color);
+			transform: translateY(-1px);
+		}
+		.quick-rules-toggle-btn .chevron {
+			transition: transform 0.3s ease;
+			font-size: 0.7rem;
+		}
+		.quick-rules-toggle-btn.open .chevron {
+			transform: rotate(180deg);
+		}
+		.quick-rules-drawer {
+			width: 100%;
+			margin-top: 0.75rem;
+			display: none;
+			background: var(--bg-surface);
+			backdrop-filter: blur(16px);
+			border: 1px solid var(--border-color);
+			border-radius: 18px;
+			padding: 1.1rem;
+			box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45);
+			animation: fadeInSlide 0.25s ease;
+		}
+		.quick-rules-drawer.open {
+			display: block;
+		}
+		.quick-rules-grid {
+			display: grid;
+			grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+			gap: 0.75rem;
+			margin-bottom: 0.85rem;
+		}
+		.quick-rule-mini-card {
+			background: rgba(0, 0, 0, 0.3);
 			border: 1px solid var(--border-subtle);
 			border-radius: 12px;
 			padding: 0.75rem;
+			display: flex;
+			flex-direction: column;
+			gap: 0.3rem;
 		}
-		.rule-icon {
-			font-size: 1.25rem;
-			flex-shrink: 0;
-		}
-		.rule-desc h4 {
-			font-size: 0.85rem;
-			font-weight: 700;
+		.quick-rule-mini-header {
+			font-size: 0.8rem;
+			font-weight: 800;
 			color: var(--text-primary);
-			margin-bottom: 0.25rem;
+			display: flex;
+			align-items: center;
+			gap: 0.4rem;
 		}
-		.rule-desc p {
-			font-size: 0.78rem;
-			line-height: 1.4;
+		.quick-rule-mini-text {
+			font-size: 0.74rem;
 			color: var(--text-secondary);
+			line-height: 1.35;
+		}
+		.quick-rules-footer {
+			display: flex;
+			justify-content: space-between;
+			align-items: center;
+			padding-top: 0.6rem;
+			border-top: 1px solid var(--border-subtle);
+			font-size: 0.74rem;
+			color: var(--text-muted);
+			flex-wrap: wrap;
+			gap: 0.5rem;
+		}
+		.quick-rules-more-btn {
+			background: transparent;
+			border: none;
+			color: var(--color-accent);
+			font-family: var(--font-main);
+			font-size: 0.76rem;
+			font-weight: 700;
+			cursor: pointer;
+			text-decoration: underline;
+			text-underline-offset: 3px;
+		}
+		.quick-rules-more-btn:hover {
+			opacity: 0.85;
 		}
 
 		@keyframes fadeIn {
@@ -1332,6 +1523,60 @@
 			<div class="keyboard-tips">
 				<span>💡 Shortcuts: <kbd>1-9</kbd> Numpad Grid | <kbd>R</kbd> Rematch | <kbd>U</kbd> Undo | <kbd>M</kbd> Mute</span>
 			</div>
+
+			<div class="quick-rules-container">
+				<button class="quick-rules-toggle-btn" id="quickRulesToggleBtn" aria-expanded="false" title="Toggle Quick Rules guide">
+					<span class="btn-icon">📖</span>
+					<span>Quick Rules & Game Mechanics</span>
+					<span class="chevron" id="quickRulesChevron">▼</span>
+				</button>
+				<div class="quick-rules-drawer" id="quickRulesDrawer">
+					<div class="quick-rules-grid">
+						<div class="quick-rule-mini-card">
+							<div class="quick-rule-mini-header">
+								<span>🎯</span>
+								<span id="quickRuleWinGoalTitle">Matrix Goal: 3-in-a-Row</span>
+							</div>
+							<div class="quick-rule-mini-text" id="quickRuleWinGoalDesc">
+								Align 3 marks horizontally, vertically, or diagonally on the 3×3 grid to claim victory.
+							</div>
+						</div>
+						<div class="quick-rule-mini-card">
+							<div class="quick-rule-mini-header">
+								<span>🔄</span>
+								<span id="quickRuleInfinityTitle">Infinity Mode</span>
+								<span class="rule-badge" id="quickRuleInfinityBadge">Off</span>
+							</div>
+							<div class="quick-rule-mini-text" id="quickRuleInfinityDesc">
+								Max 3 marks per player. Placing your 4th mark automatically dissolves your oldest mark.
+							</div>
+						</div>
+						<div class="quick-rule-mini-card">
+							<div class="quick-rule-mini-header">
+								<span>⏱️</span>
+								<span id="quickRuleBlitzTitle">Blitz Countdown</span>
+								<span class="rule-badge" id="quickRuleBlitzBadge">Off</span>
+							</div>
+							<div class="quick-rule-mini-text">
+								8 seconds per turn! If time runs out, a random unoccupied cell is picked instantly.
+							</div>
+						</div>
+						<div class="quick-rule-mini-card">
+							<div class="quick-rule-mini-header">
+								<span>🤖</span>
+								<span>AI Protocol</span>
+							</div>
+							<div class="quick-rule-mini-text" id="quickRuleAiDesc">
+								Bot set to Impossible (unbeatable Minimax recursive solver).
+							</div>
+						</div>
+					</div>
+					<div class="quick-rules-footer">
+						<span>Need deep tactical breakdown or complete rules?</span>
+						<button class="quick-rules-more-btn" id="quickRulesMoreBtn">Open Complete Rulebook & Guide [?] ➔</button>
+					</div>
+				</div>
+			</div>
 		</main>
 
 		<div class="modal-backdrop" id="winModal" style="display: none;">
@@ -1398,48 +1643,192 @@
 		<div class="modal-backdrop" id="rulesModal" style="display: none;">
 			<div class="modal-card rules-modal-card">
 				<div class="modal-header">
-					<h2 class="modal-heading">❓ Game Guide & Rules</h2>
+					<h2 class="modal-heading">❓ NEXUS Strategy Guide & Rules</h2>
 					<button class="modal-close-btn" id="closeRulesModalBtn" aria-label="Close Rules">✕</button>
 				</div>
 
+				<nav class="rules-tabs-nav" aria-label="Rules Categories">
+					<button class="rules-tab-btn active" data-tab="tab-matrix">🎯 Matrix Goals</button>
+					<button class="rules-tab-btn" data-tab="tab-infinity">🔄 Infinity Mode</button>
+					<button class="rules-tab-btn" data-tab="tab-blitz">⏱️ Blitz Timer</button>
+					<button class="rules-tab-btn" data-tab="tab-ai">🤖 AI Protocols</button>
+					<button class="rules-tab-btn" data-tab="tab-controls">⌨️ Keybindings</button>
+				</nav>
+
 				<div class="rules-content">
-					<div class="rule-item">
-						<div class="rule-icon">⚔️</div>
-						<div class="rule-desc">
-							<h4>Classic Strategy</h4>
-							<p>Players take turns placing their mark (X or O). The first player to align 3 marks horizontally, vertically, or diagonally wins.</p>
+					<!-- Tab 1: Matrix Goals -->
+					<div class="rules-tab-panel active" id="tab-matrix">
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>⚡</span>
+								<span>3×3 Standard Grid</span>
+								<span class="rule-badge">Target: 3 in a Row</span>
+							</div>
+							<div class="rule-card-body">
+								The timeless classic duel. Align 3 of your marks horizontally, vertically, or along either diagonal before your rival does.
+							</div>
+						</div>
+
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>💠</span>
+								<span>4×4 Expanded Grid</span>
+								<span class="rule-badge">Target: 4 in a Row</span>
+							</div>
+							<div class="rule-card-body">
+								Increased spatial complexity with 16 total tiles. Align 4 marks across rows, columns, or corner-to-corner diagonals.
+							</div>
+						</div>
+
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>🌌</span>
+								<span>5×5 Arena Grid</span>
+								<span class="rule-badge">Target: 4 in a Row</span>
+							</div>
+							<div class="rule-card-body">
+								High-stakes warfare across 25 tiles. Connect 4 consecutive marks anywhere on the grid in any orthogonal or diagonal vector to secure victory.
+							</div>
+						</div>
+
+						<div class="rule-tip-box">
+							<span>💡</span>
+							<span>Tactical Tip: Secure the central quadrants to multiply your potential victory vectors.</span>
 						</div>
 					</div>
 
-					<div class="rule-item">
-						<div class="rule-icon">🔄</div>
-						<div class="rule-desc">
-							<h4>Infinity Mode (Vanishing Marks)</h4>
-							<p>Stalemates eliminated! Each player can only maintain <strong>3 marks</strong> simultaneously. When placing your 4th mark, your oldest placed mark dissolves. Watch the flashing mark to see which will vanish next!</p>
+					<!-- Tab 2: Infinity Mode -->
+					<div class="rules-tab-panel" id="tab-infinity">
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>🔄</span>
+								<span>Vanishing Marks Dynamic</span>
+								<span class="rule-badge">Zero Stalemate</span>
+							</div>
+							<div class="rule-card-body">
+								Stalemates and cat's games are mathematically prevented! Each player can only maintain a strict maximum number of marks on the board at once:
+								<br><br>
+								• <strong>3×3 Grid:</strong> Max 3 marks per player.<br>
+								• <strong>4×4 & 5×5 Grids:</strong> Max 4 marks per player.
+							</div>
+						</div>
+
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>⏳</span>
+								<span>The Disappearing Cue</span>
+								<span class="rule-badge">Visual Warning</span>
+							</div>
+							<div class="rule-card-body">
+								When you have reached your mark cap, your oldest mark flashes with a red warning badge (<kbd>⏳ Next</kbd>). As soon as you place your next mark, that oldest tile smoothly dissolves into thin air!
+							</div>
+						</div>
+
+						<div class="rule-tip-box">
+							<span>💡</span>
+							<span>Strategy: Plan 2 steps ahead. Sometimes letting an old mark vanish opens up a winning surprise strike!</span>
 						</div>
 					</div>
 
-					<div class="rule-item">
-						<div class="rule-icon">🧠</div>
-						<div class="rule-desc">
-							<h4>Minimax Impossible AI</h4>
-							<p>On Impossible difficulty, the AI analyzes all future move trees using the Minimax recursive search algorithm. It is mathematically unbeatable!</p>
+					<!-- Tab 3: Blitz Timer -->
+					<div class="rules-tab-panel" id="tab-blitz">
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>⏱️</span>
+								<span>8-Second Turn Constraint</span>
+								<span class="rule-badge">High Pressure</span>
+							</div>
+							<div class="rule-card-body">
+								No over-thinking or stalling allowed. You have exactly 8.0 seconds to assess the board, formulate a counter-strategy, and place your mark.
+							</div>
+						</div>
+
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>⚠️</span>
+								<span>Audio & Visual Countdown</span>
+								<span class="rule-badge">Critical Zone</span>
+							</div>
+							<div class="rule-card-body">
+								The neon timer bar shrinks above the status HUD. When remaining time dips under 2.5 seconds, the bar shifts to urgent red with rhythmic warning ticks.
+							</div>
+						</div>
+
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>⚡</span>
+								<span>Timeout Penalty</span>
+								<span class="rule-badge">Forced Play</span>
+							</div>
+							<div class="rule-card-body">
+								If your turn timer hits zero, the arena mainframe instantly claims a random unoccupied cell on your behalf to maintain momentum.
+							</div>
 						</div>
 					</div>
 
-					<div class="rule-item">
-						<div class="rule-icon">⏱️</div>
-						<div class="rule-desc">
-							<h4>Blitz Timer Mode</h4>
-							<p>Each turn has an 8-second countdown. If time expires, a random available cell is forced to maintain fast-paced momentum.</p>
+					<!-- Tab 4: AI Protocols -->
+					<div class="rules-tab-panel" id="tab-ai">
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>🤖</span>
+								<span>Impossible Protocol</span>
+								<span class="rule-badge">Minimax Engine</span>
+							</div>
+							<div class="rule-card-body">
+								Powered by recursive Minimax decision analysis. The bot evaluates every possible branch of the game tree. It will NEVER make a blunder and cannot be defeated under classic rules.
+							</div>
+						</div>
+
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>🛡️</span>
+								<span>Medium Protocol</span>
+								<span class="rule-badge">Tactical Heuristic</span>
+							</div>
+							<div class="rule-card-body">
+								A balanced sparring partner. It will actively seize winning shots and reliably block your immediate threats, but occasionally leaves subtle peripheral openings.
+							</div>
+						</div>
+
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>🌱</span>
+								<span>Easy Protocol</span>
+								<span class="rule-badge">Casual Sparring</span>
+							</div>
+							<div class="rule-card-body">
+								Great for relaxed games and learning new modes. Plays with a large degree of randomness and relaxed defensive awareness.
+							</div>
 						</div>
 					</div>
 
-					<div class="rule-item">
-						<div class="rule-icon">⌨️</div>
-						<div class="rule-desc">
-							<h4>Keyboard Quick Controls</h4>
-							<p>Use Numpad keys <kbd>1-9</kbd> corresponding to board tiles. Press <kbd>R</kbd> for quick Rematch, <kbd>U</kbd> to Undo, and <kbd>M</kbd> to Mute.</p>
+					<!-- Tab 5: Keybindings & Controls -->
+					<div class="rules-tab-panel" id="tab-controls">
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>⌨️</span>
+								<span>Rapid Keyboard Controls</span>
+								<span class="rule-badge">Instant Input</span>
+							</div>
+							<div class="rule-card-body">
+								• <kbd>1</kbd> through <kbd>9</kbd>: Place marks on 3×3 board tiles directly from your numeric keypad.<br>
+								• <kbd>R</kbd>: Rematch / Start a fresh round instantly.<br>
+								• <kbd>U</kbd>: Undo your previous move.<br>
+								• <kbd>M</kbd>: Mute or unmute synthesized Web Audio effects.<br>
+								• <kbd>?</kbd>: Open this Rulebook & Strategy Guide anywhere.<br>
+								• <kbd>Esc</kbd>: Instantly close any open dialog or modal.
+							</div>
+						</div>
+
+						<div class="rule-card">
+							<div class="rule-card-header">
+								<span>🎨</span>
+								<span>Neon Cyber Themes</span>
+								<span class="rule-badge">4 Visual Styles</span>
+							</div>
+							<div class="rule-card-body">
+								Switch between <strong>Cyber Neon</strong>, <strong>Solar Sunset</strong>, <strong>Emerald Matrix</strong>, and <strong>Frosted Luxury</strong> using the top navigation palette icon.
+							</div>
 						</div>
 					</div>
 				</div>
@@ -1743,6 +2132,52 @@
 				const undoBtn = document.getElementById('undoBtn');
 				if (undoBtn) {
 					undoBtn.disabled = state.moveHistory.length === 0 || state.isGameOver;
+				}
+				updateQuickRulesUI();
+			}
+
+			function updateQuickRulesUI() {
+				const goalTitle = document.getElementById('quickRuleWinGoalTitle');
+				const goalDesc = document.getElementById('quickRuleWinGoalDesc');
+				const infBadge = document.getElementById('quickRuleInfinityBadge');
+				const infDesc = document.getElementById('quickRuleInfinityDesc');
+				const blitzBadge = document.getElementById('quickRuleBlitzBadge');
+				const aiDesc = document.getElementById('quickRuleAiDesc');
+
+				if (goalTitle && goalDesc) {
+					if (state.gridSize === 3) {
+						goalTitle.textContent = 'Matrix Goal: 3-in-a-Row';
+						goalDesc.textContent = 'Align 3 marks horizontally, vertically, or diagonally on the 3×3 grid.';
+					} else if (state.gridSize === 4) {
+						goalTitle.textContent = 'Matrix Goal: 4-in-a-Row';
+						goalDesc.textContent = 'Align 4 marks horizontally, vertically, or diagonally on the 4×4 grid.';
+					} else {
+						goalTitle.textContent = 'Matrix Goal: 4-in-a-Row';
+						goalDesc.textContent = 'Align 4 consecutive marks across the 5×5 arena grid.';
+					}
+				}
+
+				if (infBadge && infDesc) {
+					infBadge.textContent = state.isInfinity ? 'ACTIVE' : 'OFF';
+					infBadge.classList.toggle('active-badge', state.isInfinity);
+					const maxMarks = state.winTarget;
+					infDesc.textContent = state.isInfinity 
+						? `Active! Max ${maxMarks} marks per player. Oldest mark dissolves on 4th move.` 
+						: `Standard mode. Placed marks remain permanently on the grid.`;
+				}
+
+				if (blitzBadge) {
+					blitzBadge.textContent = state.isBlitz ? 'ACTIVE' : 'OFF';
+					blitzBadge.classList.toggle('active-badge', state.isBlitz);
+				}
+
+				if (aiDesc) {
+					if (state.mode === 'pvp') {
+						aiDesc.textContent = 'Local 2-Player mode active. Alternate turns with a friend.';
+					} else {
+						const diffNames = { easy: 'Easy (casual)', medium: 'Medium (tactical blocker)', hard: 'Impossible (Minimax solver)' };
+						aiDesc.textContent = `Bot set to ${diffNames[state.difficulty] || state.difficulty}.`;
+					}
 				}
 			}
 
@@ -2556,6 +2991,40 @@
 				}
 				if (closeRulesBtn && rulesModal) closeRulesBtn.addEventListener('click', () => rulesModal.style.display = 'none');
 				if (rulesGotItBtn && rulesModal) rulesGotItBtn.addEventListener('click', () => rulesModal.style.display = 'none');
+
+				// Rules Modal Tab Navigation
+				document.querySelectorAll('.rules-tab-btn').forEach(tabBtn => {
+					tabBtn.addEventListener('click', () => {
+						document.querySelectorAll('.rules-tab-btn').forEach(b => b.classList.remove('active'));
+						document.querySelectorAll('.rules-tab-panel').forEach(p => p.classList.remove('active'));
+
+						tabBtn.classList.add('active');
+						const targetPanel = document.getElementById(tabBtn.dataset.tab);
+						if (targetPanel) targetPanel.classList.add('active');
+						sounds.click();
+					});
+				});
+
+				// On-Page Quick Rules Accordion
+				const quickRulesToggleBtn = document.getElementById('quickRulesToggleBtn');
+				const quickRulesDrawer = document.getElementById('quickRulesDrawer');
+				const quickRulesMoreBtn = document.getElementById('quickRulesMoreBtn');
+
+				if (quickRulesToggleBtn && quickRulesDrawer) {
+					quickRulesToggleBtn.addEventListener('click', () => {
+						const isOpen = quickRulesDrawer.classList.toggle('open');
+						quickRulesToggleBtn.classList.toggle('open', isOpen);
+						quickRulesToggleBtn.setAttribute('aria-expanded', isOpen);
+						sounds.click();
+					});
+				}
+
+				if (quickRulesMoreBtn && rulesModal) {
+					quickRulesMoreBtn.addEventListener('click', () => {
+						rulesModal.style.display = 'flex';
+						sounds.click();
+					});
+				}
 
 				window.addEventListener('keydown', (e) => {
 					if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
